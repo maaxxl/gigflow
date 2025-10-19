@@ -31,6 +31,6 @@ jobs:
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
-          local_path: local_path: build/web/*
+          local_path: build/web/*
           remote_path: /var/www/gigflow
           sftp_only: true
