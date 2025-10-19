@@ -32,5 +32,5 @@ jobs:
           port: 22
           password: ${{ secrets.wokmi4-hekkib-sowqAd }}
           local_path: build/web/
-          remote_path: /var/www/beta/ # <- Hier Pfad auf Strato-Server eintragen
+          remote_path: /var/www/gigflow/ # <- Hier Pfad auf Strato-Server eintragen
           sftp_only: true
