@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
 					titleLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.black87),
 					bodyMedium: TextStyle(fontSize: 16, color: Colors.black87),
 				),
-				cardTheme: const CardTheme(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16)))),
+				cardTheme: const CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16)))),
 			);
 
 			return MaterialApp(
