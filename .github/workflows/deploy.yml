@@ -30,7 +30,7 @@ jobs:
           username: ${{ secrets.root }}
           server: ${{ secrets.h2815428.stratoserver.net }}
           port: 22
-          password: ${{ secrets.vN2K.Wq4;HD34RWC }}
+          password: ${{ secrets.wokmi4-hekkib-sowqAd }}
           local_path: build/web/
           remote_path: /var/www/beta/ # <- Hier Pfad auf Strato-Server eintragen
           sftp_only: true
