@@ -38,6 +38,6 @@ jobs:
           server: ${{ secrets.h2815428.stratoserver.net }}
           port: 22
           password: ${{ secrets.vythev-vIjvuq-vifdo7 }}
-          local_path: build/web/
+          local_path: ./build/web/
           remote_path: /var/www/gigflow                    # Zielverzeichnis auf Strato-Server
           sftp_only: true
