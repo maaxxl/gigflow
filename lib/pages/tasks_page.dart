@@ -9,23 +9,34 @@ class TasksPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverAppBar(
-          pinned: true,
-          expandedHeight: 120,
-          flexibleSpace: FlexibleSpaceBar(
-            title: Text(title),
+        // fixed, non-collapsing header
+        SliverToBoxAdapter(
+          child: Container(
+            height: 88,
+            color: const Color(0xFFF5F5F7), // light gray header background
+            padding: const EdgeInsetsDirectional.only(start: 16.0, bottom: 12.0),
+            alignment: Alignment.bottomLeft,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(title, style: Theme.of(context).textTheme.titleLarge),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+              ],
+            ),
           ),
-          actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
         ),
         SliverFillRemaining(
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                Text('InWork', style: TextStyle(fontSize: 24)),
-                SizedBox(height: 8),
-                Text(title, style: TextStyle(fontSize: 18)),
-              ],
+          child: Container(
+            color: Colors.white,
+            child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  Text('InWork', style: TextStyle(fontSize: 24)),
+                  SizedBox(height: 8),
+                  Text(title, style: TextStyle(fontSize: 18)),
+                ],
+              ),
             ),
           ),
         ),
