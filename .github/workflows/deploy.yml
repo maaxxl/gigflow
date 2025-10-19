@@ -2,8 +2,8 @@ name: Deploy Flutter Web to Strato via SFTP
 
 on:
   push:
-    branches: [main]         # löst aus bei jedem Push auf main
-  workflow_dispatch:         # erlaubt manuelles Auslösen über GitHub UI
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -13,18 +13,22 @@ jobs:
       - name: 📥 Code aus Repository holen
         uses: actions/checkout@v3
 
-      - name: 🧰 Flutter installieren (neueste stabile Version)
+      - name: 🧰 Flutter 3.35.6 installieren
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.13.9'
+          flutter-version: '3.35.6'
           channel: 'stable'
+          cache: true
+
+      - name: 🔍 Flutter-Version prüfen
+        run: flutter --version
 
       - name: 📦 Pakete installieren
         run: flutter pub get
         working-directory: .
 
       - name: 🧪 Web-App bauen
-        run: flutter build web
+        run: flutter build web --release
         working-directory: .
 
       - name: 📤 Hochladen via SFTP zu Strato
