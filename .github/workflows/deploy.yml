@@ -24,11 +24,6 @@ jobs:
       - name: Build Flutter Web
         run: flutter build web --release
 
-      - name: Prepare deploy folder
-        run: |
-        mkdir dist
-        cp -r build/web/* dist/
-
       - name: Deploy to Strato via SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
@@ -36,6 +31,6 @@ jobs:
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
-          local_path: dist
+          local_path: build/web/
           remote_path: /var/www/gigflow
           sftp_only: true
