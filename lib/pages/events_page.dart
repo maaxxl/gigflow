@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widgets/large_title_delegate.dart';
 
 class EventsPage extends StatelessWidget {
   static const String title = 'Events';
@@ -8,11 +7,15 @@ class EventsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  return CustomScrollView(
+    return CustomScrollView(
       slivers: [
-        SliverPersistentHeader(
+        SliverAppBar(
           pinned: true,
-          delegate: LargeTitleDelegate(title: title, maxHeight: 70, action: IconButton(onPressed: () {}, icon: const Icon(Icons.add))),
+          expandedHeight: 120,
+          flexibleSpace: FlexibleSpaceBar(
+            title: Text(title),
+          ),
+          actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.add))],
         ),
         SliverFillRemaining(
           child: Center(

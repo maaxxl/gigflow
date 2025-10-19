@@ -52,8 +52,9 @@ class LargeTitleDelegate extends SliverPersistentHeaderDelegate {
                 ),
               ),
               if (action != null)
-                Align(
-                  alignment: Alignment.centerRight,
+                Positioned(
+                  right: 0,
+                  bottom: 8 + translateY, // align vertically with title baseline
                   child: Opacity(opacity: lerpDouble(1.0, 0.95, t)!, child: action),
                 ),
             ],
