@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/large_title_delegate.dart';
 
 class SettingsPage extends StatelessWidget {
   static const String title = 'Settings';
@@ -7,25 +8,11 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return CustomScrollView(
       slivers: [
-        SliverAppBar(
+        SliverPersistentHeader(
           pinned: true,
-          backgroundColor: theme.canvasColor,
-          elevation: 0,
-          expandedHeight: 140,
-          flexibleSpace: FlexibleSpaceBar(
-            titlePadding: const EdgeInsetsDirectional.only(start: 16, bottom: 16, end: 16),
-            title: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(title, style: theme.textTheme.headlineLarge),
-            ),
-            collapseMode: CollapseMode.pin,
-          ),
-          actions: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
-          ],
+          delegate: LargeTitleDelegate(title: title, maxHeight: 70, action: IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))),
         ),
         SliverFillRemaining(
           child: Center(
