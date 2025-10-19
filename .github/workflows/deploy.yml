@@ -1,0 +1,36 @@
+name: Deploy Flutter Web to Strato via SFTP
+
+on:
+  push:
+    branches:
+      - main  # nur bei Push auf "main" auslösen – ggf. anpassen
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Code aus Repository holen
+        uses: actions/checkout@v3
+
+      - name: 🧰 Flutter installieren
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.16.0'  # Deine Flutter-Version ggf. anpassen
+
+      - name: 🛠️ Flutter Packages holen
+        run: flutter pub get
+
+      - name: 🧪 Flutter Web App bauen
+        run: flutter build web
+
+      - name: 📤 Hochladen per SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          username: ${{ secrets.root }}
+          server: ${{ secrets.h2815428.stratoserver.net }}
+          port: 22
+          password: ${{ secrets.vN2K.Wq4;HD34RWC }}
+          local_path: build/web/
+          remote_path: /path/zum/zielordner/ # <- Hier Pfad auf Strato-Server eintragen
+          sftp_only: true
