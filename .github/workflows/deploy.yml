@@ -16,7 +16,7 @@ jobs:
       - name: 🧰 Flutter installieren (neueste stabile Version)
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.16.9'
+          flutter-version: '3.13.9'
           channel: 'stable'
 
       - name: 📦 Pakete installieren
