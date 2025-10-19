@@ -2,8 +2,8 @@ name: Deploy Flutter Web to Strato via SFTP
 
 on:
   push:
-    branches:
-      - main  # nur bei Push auf "main" auslösen – ggf. anpassen
+    branches: [main]         # löst aus bei jedem Push auf main
+  workflow_dispatch:         # erlaubt manuelles Auslösen über GitHub UI
 
 jobs:
   build-and-deploy:
@@ -13,20 +13,21 @@ jobs:
       - name: 📥 Code aus Repository holen
         uses: actions/checkout@v3
 
-- name: 🧰 Flutter installieren (aktuelle stabile Version)
-  uses: subosito/flutter-action@v2
-  with:
-    flutter-version: '3.16.9'
-    channel: 'stable'
+      - name: 🧰 Flutter installieren (neueste stabile Version)
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.16.9'
+          channel: 'stable'
 
-
-      - name: 🛠️ Flutter Packages holen
+      - name: 📦 Pakete installieren
         run: flutter pub get
+        working-directory: .
 
-      - name: 🧪 Flutter Web App bauen
+      - name: 🧪 Web-App bauen
         run: flutter build web
+        working-directory: .
 
-      - name: 📤 Hochladen per SFTP
+      - name: 📤 Hochladen via SFTP zu Strato
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           username: ${{ secrets.root }}
@@ -34,5 +35,5 @@ jobs:
           port: 22
           password: ${{ secrets.wokmi4-hekkib-sowqAd }}
           local_path: build/web/
-          remote_path: /var/www/gigflow/ # <- Hier Pfad auf Strato-Server eintragen
+          remote_path: /var/www/gigflow/                    # Zielverzeichnis auf Strato-Server
           sftp_only: true
